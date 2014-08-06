@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>SmallWorld</title>
+<!-- STYLES -->
+<link rel="stylesheet" type="text/css" href="/css/wait.css">
+<!-- JAVASCRIPTS -->
+<script src="/socket.io/socket.io.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<div id="infos_diverses"></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var socket = io.connect();
+	socket
+	.on('connect', function () {
+		socket.emit('setGameId')
+	})
+	.on('showGameId', function (gameId) {
+		$('#infos_diverses').html('Game #'+gameId);
+	})
+
+});
+</script>
+
+</body>
+</html>
